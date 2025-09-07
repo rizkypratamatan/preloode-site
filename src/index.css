@@ -6,6 +6,7 @@
     --color-red: #c0001d;
     --color-gray: #373b40;
     --color-gray-dark: #232529;
+    --color-white-dark: #ebeff5;
     --font-brand: 'orbitron', Sans-serif, serif;
     --font-sourcecode: 'sourcecodepro', Sans-serif, serif;
     --leading-large-xl: 4.375rem;
@@ -82,10 +83,66 @@
     .hero-separator {
         @apply w-[0.125rem] h-[2.188rem] bg-gray-dark;
     }
+
+    .team-profile {
+        @apply relative overflow-hidden;
+    }
+
+    .team-profile img {
+        @apply duration-700;
+    }
+
+    .team-profile:hover img {
+        @apply transform scale-120;
+    }
+
+    .team-profile .bg-dark-transparent {
+        @apply absolute top-0 w-full h-full p-[2.188rem] text-center opacity-0 duration-700;
+    }
+
+    .team-profile:hover .bg-dark-transparent {
+        @apply opacity-100;
+    }
+
+    .team-profile .bg-dark-transparent div {
+        @apply absolute w-[calc(100%-4.296rem)] bottom-[2.188rem];
+    }
+
+    .team-profile .bg-dark-transparent div h3 {
+        @apply font-brand text-3xl font-semibold text-white capitalize;
+    }
+
+    .team-profile .bg-dark-transparent div p {
+        @apply text-[0.875rem] font-medium text-white;
+    }
+
+    .team-skill {
+        @apply flex flex-col gap-4;
+    }
+
+    .team-skill h3 {
+        @apply font-semibold;
+    }
+
+    .team-skill .percentage {
+        @apply relative h-2 bg-white-dark rounded-xl;
+    }
+
+    .team-skill .percentage div {
+        @apply h-full bg-blue rounded-xl;
+    }
+
+    .team-skill .percentage p {
+        @apply absolute top-[-2.25rem] px-2 py-1 bg-gray-dark rounded-lg text-white;
+    }
 }
 
 @layer utilities {
     .bg-dark-gradient {
         background-image: linear-gradient(rgb(0, 0, 0) 56%, rgb(24, 27, 31) 100%);
+    }
+
+    .bg-dark-transparent {
+        background: rgba(0, 0, 0, 0.3);
     }
 }
