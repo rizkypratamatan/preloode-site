@@ -131,7 +131,7 @@ export default function IndexComponent() {
                 </div>
             </section>
             <section className="container">
-                <div className="embla py-[7rem]">
+                <div className="embla py-28">
                     <div className="embla-viewport" ref={emblaCarousel}>
                         <div className="embla-container">
                             <div className="embla-slide">
