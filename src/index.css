@@ -6,6 +6,7 @@
     --color-red: #c0001d;
     --color-gray: #373b40;
     --color-gray-dark: #232529;
+    --color-gray-light: #c8c9cb;
     --color-white-dark: #ebeff5;
     --font-brand: 'orbitron', Sans-serif, serif;
     --font-sourcecode: 'sourcecodepro', Sans-serif, serif;
@@ -66,6 +67,41 @@
 
     a.active {
         @apply text-blue;
+    }
+
+    .embla {
+        @apply flex flex-col gap-[1.875rem];
+        --slide-spacing: 3.125rem;
+        --slide-size: 25%;
+    }
+
+    .embla-viewport {
+        @apply overflow-hidden;
+    }
+
+    .embla-container {
+        @apply flex backface-hidden;
+        touch-action: pan-y pinch-zoom;
+        margin-left: calc(var(--slide-spacing) * -1);
+    }
+
+    .embla-slide {
+        @apply min-w-0;
+        flex: 0 0 var(--slide-size);
+        padding-left: var(--slide-spacing);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .embla-dots {
+        @apply flex gap-[0.5rem] justify-center;
+    }
+
+    .embla-dots button {
+        @apply w-[0.5rem] h-[0.5rem] bg-gray-light rounded-full cursor-pointer;
+    }
+
+    .embla-dots button.selected {
+        @apply bg-blue;
     }
 
     .hero-customer {

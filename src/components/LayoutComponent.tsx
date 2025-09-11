@@ -21,14 +21,15 @@ export default function LayoutComponent() {
                 </nav>
                 <div className="flex bg-white rounded-lg text-gray">
                     <input className="w-[13.75rem] px-4 leading-11" placeholder="Search..."/>
-                    <button className="w-[2.5rem] cursor-pointer"><IconSearch className="mx-auto" size={'1.25rem'} /></button>
+                    <button className="w-[2.5rem] cursor-pointer"><IconSearch className="mx-auto" size={'1.25rem'}/>
+                    </button>
                 </div>
                 <div className="flex">
                     <Link className="px-8 py-3 leading-5 font-semibold" to="/login/">Login</Link>
                     <Link className="px-8 py-3 bg-blue rounded-lg leading-5 font-semibold" to="/register/">Register</Link>
                 </div>
                 <div>
-                    <img className="cursor-pointer" src="/resources/images/hamburger.png" alt="Hamburger Icon" />
+                    <img className="cursor-pointer" src="/resources/images/hamburger.png" alt="Hamburger Icon"/>
                 </div>
             </header>
             <Outlet></Outlet>

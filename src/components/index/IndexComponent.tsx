@@ -1,4 +1,6 @@
+import useEmblaCarousel from "embla-carousel-react";
 import Lottie from "lottie-react";
+import {useCallback, useEffect, useState} from "react";
 import {Link} from "react-router";
 import Astronaut from "../../assets/json/astronaut.json";
 import CpuProcessor from "../../assets/json/cpu-processor.json";
@@ -6,6 +8,28 @@ import SolarSystem from '../../assets/json/solar-system.json';
 
 
 export default function IndexComponent() {
+    const [emblaCarousel, emblaApi] = useEmblaCarousel({align: 'start'});
+    const [emblaSelected, setEmblaSelected] = useState<number>(0);
+    const [emblaScrollSnaps, setEmblaScrollSnaps] = useState<number[]>([]);
+
+    const dotClick = (index: number) => {
+        if(emblaApi) {
+            emblaApi.scrollTo(index);
+            setEmblaSelected(index);
+        }
+    }
+
+    const onSelect = useCallback((emblaApi: any) => {
+        setEmblaSelected(emblaApi.selectedScrollSnap());
+    }, []);
+
+    useEffect(() => {
+        if(emblaApi) {
+            setEmblaScrollSnaps(emblaApi.scrollSnapList());
+            emblaApi.on('select', onSelect);
+        }
+    }, [emblaApi, onSelect]);
+
     return (
         <>
             <section className="pt-[6.25rem] bg-dark-gradient overflow-hidden">
@@ -49,7 +73,8 @@ export default function IndexComponent() {
                     <Lottie className="basis-[3.25rem] h-[3.25rem]" animationData={CpuProcessor}/>
                     <h2 className="font-bold">Our Hero Team</h2>
                 </div>
-                <h3 className="mb-13 font-brand text-[3.125rem] font-extrabold text-center">Expert with Tons of Experience</h3>
+                <h3 className="mb-13 font-brand text-[3.125rem] font-extrabold text-center">Expert with Tons of
+                    Experience</h3>
                 <div className="flex gap-8 items-center">
                     <div className="basis-1/2 flex">
                         <div className="team-profile">
@@ -72,7 +97,8 @@ export default function IndexComponent() {
                         </div>
                     </div>
                     <div className="basis-1/2 flex flex-col gap-9">
-                        <p className="pl-6 border-l-2 border-white-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                        <p className="pl-6 border-l-2 border-white-dark">Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                         <div className="team-skill">
                             <h3>Web Development</h3>
                             <div className="percentage">
@@ -81,14 +107,7 @@ export default function IndexComponent() {
                             </div>
                         </div>
                         <div className="team-skill">
-                            <h3>Desktop App Development</h3>
-                            <div className="percentage">
-                                <div className="w-1/2"></div>
-                                <p className="left-[50%]">50%</p>
-                            </div>
-                        </div>
-                        <div className="team-skill">
-                            <h3>Mobile App Development</h3>
+                            <h3>Mobile & Desktop App Development</h3>
                             <div className="percentage">
                                 <div className="w-1/2"></div>
                                 <p className="left-[50%]">50%</p>
@@ -108,6 +127,43 @@ export default function IndexComponent() {
                                 <p className="left-[50%]">50%</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section className="container">
+                <div className="embla py-[7rem]">
+                    <div className="embla-viewport" ref={emblaCarousel}>
+                        <div className="embla-container">
+                            <div className="embla-slide">
+                                <img src="/resources/images/logo-brand-dummy-1.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-2.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-3.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-4.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide">
+                                <img src="/resources/images/logo-brand-dummy-1.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-2.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-3.png" alt="Partner Logo"/>
+                            </div>
+                            <div className="embla-slide experience">
+                                <img src="/resources/images/logo-brand-dummy-4.png" alt="Partner Logo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="embla-dots">
+                        {emblaScrollSnaps.map((_, index) => (
+                            <button key={index} className={index === emblaSelected ? 'selected' : ''} onClick={() => dotClick(index)}></button>
+                        ))}
                     </div>
                 </div>
             </section>
